@@ -15,7 +15,7 @@ import (
 
 	"github.com/crossplane/upjet/pkg/terraform"
 
-	"github.com/upbound/upjet-provider-template/apis/v1beta1"
+	"github.com/svrc/provider-cloudfoundry/apis/v1beta1"
 )
 
 const (
@@ -24,7 +24,13 @@ const (
 	errGetProviderConfig    = "cannot get referenced ProviderConfig"
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
-	errUnmarshalCredentials = "cannot unmarshal template credentials as JSON"
+	errUnmarshalCredentials = "cannot unmarshal cloudfoundry credentials as JSON"
+
+        keyApiUrl = "api_url"
+        keyUser = "user"
+        keyPassword = "password"
+        keySkipSslValidation = "skip_ssl_validation"
+
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -62,11 +68,19 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 			return ps, errors.Wrap(err, errUnmarshalCredentials)
 		}
 
-		// Set credentials in Terraform provider configuration.
-		/*ps.Configuration = map[string]any{
-			"username": creds["username"],
-			"password": creds["password"],
-		}*/
-		return ps, nil
-	}
+                ps.Configuration = map[string]any{}
+                if v, ok := creds[keyApiUrl]; ok {
+                  ps.Configuration[keyApiUrl] = v
+                }
+                if v, ok := creds[keyUser]; ok {
+                  ps.Configuration[keyUser] = v
+                }
+                if v, ok := creds[keyPassword]; ok {
+                  ps.Configuration[keyPassword] = v
+                }
+                if v, ok := creds[keySkipSslValidation]; ok {
+                  ps.Configuration[keySkipSslValidation] = v
+                }
+                return ps, nil
+}
 }

@@ -1,0 +1,11 @@
+apiVersion: app.tanzu.vmware.com/v1alpha1
+kind: App
+metadata:
+  annotations:
+    meta.upbound.io/example-id: app/v1alpha1/app
+  labels:
+    testing.upbound.io/example-name: spring-music
+  name: spring-music
+spec:
+  forProvider:
+    path: /Work/cloudfoundry/apps/spring-music/build/libs/spring-music.war
