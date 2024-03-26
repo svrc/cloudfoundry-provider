@@ -4,14 +4,14 @@
 PROJECT_NAME ?= provider-cloudfoundry
 PROJECT_REPO ?= github.com/svrc/$(PROJECT_NAME)
 
-export TERRAFORM_VERSION ?= 1.2.1
+export TERRAFORM_VERSION ?= 1.5.7
 
-export TERRAFORM_PROVIDER_SOURCE ?= hashicorp/null
-export TERRAFORM_PROVIDER_REPO ?= https://github.com/hashicorp/terraform-provider-null
-export TERRAFORM_PROVIDER_VERSION ?= 3.1.0
-export TERRAFORM_PROVIDER_DOWNLOAD_NAME ?= terraform-provider-null
+export TERRAFORM_PROVIDER_SOURCE ?= cloudfoundry-community/cloudfoundry
+export TERRAFORM_PROVIDER_REPO ?= https://github.com/cloudfoundry-community/terraform-provider-cloudfoundry
+export TERRAFORM_PROVIDER_VERSION ?= 0.53.1
+export TERRAFORM_PROVIDER_DOWNLOAD_NAME ?= terraform-provider-cloudfoundry
 export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX ?= https://github.com/cloudfoundry-community/terraform-provider-cloudfoundry/releases/download/v$(TERRAFORM_PROVIDER_VERSION)/$(TERRAFORM_PROVIDER_DOWNLOAD_NAME)/$(TERRAFORM_PROVIDER_VERSION)
-export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-null_v3.1.0_x5
+export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-cloudfoundry_v0.53.1
 export TERRAFORM_DOCS_PATH ?= docs/resources
 
 
